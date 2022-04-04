@@ -29,7 +29,6 @@ fun HabrahabrApiArticles.top(period: ArticlesPeriod, page: Int) = filter(Article
 }.build())
 
 
-
 class HabrahabrApiArticlesByFilter(override val path: StringBuilder, private val filter: ArticlesFilter) :
     ApiRequestBuilder {
     override val queries: Map<String, String> = HashMap<String, String>().apply {
@@ -38,8 +37,15 @@ class HabrahabrApiArticlesByFilter(override val path: StringBuilder, private val
         when (filter.sort) {
             is ArticlesFilter.Sort.All -> path.append("/posts/all")
             is ArticlesFilter.Sort.Top -> path.append("/top/").append(filter.sort.period.value)
-            is ArticlesFilter.Sort.MostReading -> throw IllegalArgumentException("this sort type doesn't supports")
             is ArticlesFilter.Sort.Interesting -> path.append("/posts/interesting")
+            is ArticlesFilter.Sort.Search -> putSearchSort(filter.sort)
+            else -> throw IllegalArgumentException("this sort type doesn't supports")
         }
+    }
+
+    private fun HashMap<String, String>.putSearchSort(sort: ArticlesFilter.Sort.Search) {
+        path.append("/search/posts/").append(sort.query)
+        put("sort", sort.order.value)
+        put("get_article", "true")
     }
 }

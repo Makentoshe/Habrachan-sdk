@@ -1,6 +1,6 @@
 package com.makentoshe.habrachan.api.common.articles.filter
 
-class ArticlesFilterScope {
+class ArticlesFilterScope internal constructor(){
 
     var sort: ArticlesFilter.Sort = ArticlesFilter.Sort.All
 

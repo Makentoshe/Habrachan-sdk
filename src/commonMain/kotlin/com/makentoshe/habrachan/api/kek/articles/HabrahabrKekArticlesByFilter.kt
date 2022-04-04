@@ -3,6 +3,7 @@ package com.makentoshe.habrachan.api.kek.articles
 import com.makentoshe.habrachan.api.common.ApiRequestBuilder
 import com.makentoshe.habrachan.api.common.articles.filter.ArticlesFilter
 import com.makentoshe.habrachan.api.common.articles.filter.ArticlesFilterScope
+import com.makentoshe.habrachan.api.common.articles.filter.ArticlesOrder
 import com.makentoshe.habrachan.api.common.articles.filter.ArticlesPeriod
 
 fun HabrahabrKekArticles.filter(filter: ArticlesFilterScope.() -> Unit): HabrahabrKekArticlesByFilter {
@@ -31,7 +32,17 @@ fun HabrahabrKekArticles.top(period: ArticlesPeriod, page: Int) = filter(Article
     this.sort = ArticlesFilter.Sort.Top(period)
 }.build())
 
+//https://habr.com/kek/v2/articles/?news=true&fl=en%2Cru&hl=en&page=1
+fun HabrahabrKekArticles.news(page: Int) = filter(ArticlesFilterScope().apply {
+    this.page = page
+    this.sort = ArticlesFilter.Sort.News
+}.build())
 
+//https://habr.com/kek/v2/articles/?query=latex&order=relevance&fl=en%2Cru&hl=en&page=1
+fun HabrahabrKekArticles.find(query: String, order: ArticlesOrder, page: Int) = filter(ArticlesFilterScope().apply {
+    this.page = page
+    this.sort = ArticlesFilter.Sort.Search(query, order)
+}.build())
 
 class HabrahabrKekArticlesByFilter(override val path: StringBuilder, private val filter: ArticlesFilter) :
     ApiRequestBuilder {
@@ -41,10 +52,19 @@ class HabrahabrKekArticlesByFilter(override val path: StringBuilder, private val
         when (filter.sort) {
             is ArticlesFilter.Sort.All -> put("sort", "rating")
             is ArticlesFilter.Sort.MostReading -> path.append("/").append("most-reading")
-            is ArticlesFilter.Sort.Interesting -> throw IllegalArgumentException("this sort doesn't supports")
-            is ArticlesFilter.Sort.Top -> {
-                put("sort", "rating"); put("period", filter.sort.period.value)
-            }
+            is ArticlesFilter.Sort.News -> put("news", "true")
+            is ArticlesFilter.Sort.Top -> putTopSort(filter.sort)
+            is ArticlesFilter.Sort.Search -> putFindSort(filter.sort)
+            else -> throw IllegalArgumentException("this sort doesn't supports")
         }
+    }
+
+    private fun HashMap<String, String>.putFindSort(filter: ArticlesFilter.Sort.Search) {
+        put("order", filter.order.value)
+        put("query", filter.query)
+    }
+
+    private fun HashMap<String, String>.putTopSort(filter: ArticlesFilter.Sort.Top) {
+        put("sort", "rating"); put("period", filter.period.value)
     }
 }

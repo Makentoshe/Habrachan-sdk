@@ -6,14 +6,18 @@ data class ArticlesFilter(val page: Page, val sort: Sort) {
         val key = "page"
     }
 
-    abstract class Sort {
+    sealed class Sort {
 
-        object All: Sort()
+        object All : Sort()
 
-        object Interesting: Sort()
+        object Interesting : Sort()
 
-        object MostReading: Sort()
+        object MostReading : Sort()
 
-        data class Top(val period: ArticlesPeriod): Sort()
+        data class Top(val period: ArticlesPeriod) : Sort()
+
+        object News : Sort()
+
+        data class Search(val query: String, val order: ArticlesOrder): Sort()
     }
 }
