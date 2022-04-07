@@ -1,5 +1,6 @@
 package com.makentoshe.habrachan.api.api.articles
 
+import com.makentoshe.habrachan.CustomStringBuilder
 import com.makentoshe.habrachan.api.common.ApiRequestBuilder
 import com.makentoshe.habrachan.api.common.articles.filter.ArticlesFilter
 import com.makentoshe.habrachan.api.common.articles.filter.ArticlesFilterScope
@@ -29,7 +30,7 @@ fun HabrahabrApiArticles.top(period: ArticlesPeriod, page: Int) = filter(Article
 }.build())
 
 
-class HabrahabrApiArticlesByFilter(override val path: StringBuilder, private val filter: ArticlesFilter) :
+class HabrahabrApiArticlesByFilter(override val path: CustomStringBuilder, private val filter: ArticlesFilter) :
     ApiRequestBuilder {
     override val queries: Map<String, String> = HashMap<String, String>().apply {
         put(filter.page.key, filter.page.value.toString())

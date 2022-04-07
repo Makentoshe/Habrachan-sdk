@@ -1,5 +1,6 @@
 package com.makentoshe.habrachan.api.kek.articles
 
+import com.makentoshe.habrachan.CustomStringBuilder
 import com.makentoshe.habrachan.api.common.ApiRequestBuilder
 import com.makentoshe.habrachan.api.common.articles.filter.ArticlesFilter
 import com.makentoshe.habrachan.api.common.articles.filter.ArticlesFilterScope
@@ -44,7 +45,7 @@ fun HabrahabrKekArticles.find(query: String, order: ArticlesOrder, page: Int) = 
     this.sort = ArticlesFilter.Sort.Search(query, order)
 }.build())
 
-class HabrahabrKekArticlesByFilter(override val path: StringBuilder, private val filter: ArticlesFilter) :
+class HabrahabrKekArticlesByFilter(override val path: CustomStringBuilder, private val filter: ArticlesFilter) :
     ApiRequestBuilder {
     override val queries: Map<String, String> = HashMap<String, String>().apply {
         put(filter.page.key, filter.page.value.toString())
