@@ -20,6 +20,7 @@ data class HabrahabrApiArticlesByFilter(
     override val path: CustomStringBuilder,
     internal val filter: ApiArticlesFilter,
 ) : ApiRequestBuilder {
+
     override val queries: Map<String, String> = HashMap<String, String>().apply {
         filter.apply {
             putPageFilter(page)

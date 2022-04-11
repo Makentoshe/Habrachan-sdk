@@ -1,7 +1,9 @@
 package com.makentoshe.habrachan.api.kek.articles
 
 import com.makentoshe.habrachan.CustomStringBuilder
+import com.makentoshe.habrachan.api.common.ApiRequest
 import com.makentoshe.habrachan.api.common.ApiRequestBuilder
+import com.makentoshe.habrachan.api.common.ApiRequestIterable
 import com.makentoshe.habrachan.api.kek.articles.filter.KekArticlesFilter
 import com.makentoshe.habrachan.api.kek.articles.filter.KekArticlesFilterScope
 
@@ -16,7 +18,7 @@ fun HabrahabrKekArticles.filter(filter: KekArticlesFilter): HabrahabrKekArticles
 data class HabrahabrKekArticlesByFilter internal constructor(
     override val path: CustomStringBuilder,
     internal val filter: KekArticlesFilter,
-) : ApiRequestBuilder {
+) : ApiRequestBuilder, ApiRequestIterable {
 
     override val queries: Map<String, String> = HashMap<String, String>().apply {
         filter.apply {
@@ -34,6 +36,18 @@ data class HabrahabrKekArticlesByFilter internal constructor(
             putQueryFilter(query)
             putOrderFilter(order)
         }
+    }
+
+    override fun page(value: Int): ApiRequestBuilder {
+        return copy(path = path, filter = filter.copy(page = KekArticlesFilter.Page(value)))
+    }
+
+    override fun next(): ApiRequestIterable {
+        return copy(path = path, filter = filter.copy(page = filter.page.copy(value = filter.page.value + 1)))
+    }
+
+    override fun previous(): ApiRequestIterable {
+        return copy(path = path, filter = filter.copy(page = filter.page.copy(value = filter.page.value - 1)))
     }
 
     private fun HashMap<String, String>.putPageFilter(page: KekArticlesFilter.Page) {
