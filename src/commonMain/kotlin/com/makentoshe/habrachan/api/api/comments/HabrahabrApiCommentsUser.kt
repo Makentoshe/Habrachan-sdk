@@ -9,7 +9,7 @@ import com.makentoshe.habrachan.entity.UserLogin
 
 fun HabrahabrApiComments.user(userlogin: UserLogin, page: Int): HabrahabrKekCommentsUser {
     val filter = UserCommentsFilter(UserCommentsFilter.User(userlogin.login), UserCommentsFilter.Page(page))
-    return HabrahabrKekCommentsUser(path.append("/v1/users/").append(userlogin.login).append("/posts"), filter)
+    return HabrahabrKekCommentsUser(path.append("/v1/users/").append(userlogin.login).append("/comments"), filter)
 }
 
 //https://habr.com/api/v1/users/Milfgard/posts
