@@ -1,7 +1,6 @@
 package com.makentoshe.habrachan.api.kek.articles
 
 import com.makentoshe.habrachan.CustomStringBuilder
-import com.makentoshe.habrachan.api.common.ApiRequest
 import com.makentoshe.habrachan.api.common.ApiRequestBuilder
 import com.makentoshe.habrachan.api.common.ApiRequestIterable
 import com.makentoshe.habrachan.api.kek.articles.filter.KekArticlesFilter

@@ -1,10 +1,11 @@
+@file: Suppress("ClassOrdering")
 package com.makentoshe.habrachan
 
 class CustomStringBuilder(initial: String) {
 
-    private val list = ArrayList<String>()
-
     constructor() : this("")
+
+    private val list = ArrayList<String>()
 
     init {
         if (initial.isNotEmpty()) list.add(initial)
