@@ -6,4 +6,3 @@ interface ApiPath {
     /** Represents only url path, without queries and other stuff */
     val path: CustomStringBuilder
 }
-

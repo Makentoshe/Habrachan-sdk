@@ -1,7 +1,6 @@
 package com.makentoshe.habrachan.api.kek.articles
 
 import com.makentoshe.habrachan.CustomStringBuilder
-import com.makentoshe.habrachan.api.api.articles.HabrahabrApiArticlesVote
 import com.makentoshe.habrachan.api.common.ApiRequestBuilder
 import com.makentoshe.habrachan.api.common.ApiRequestMethod
 import com.makentoshe.habrachan.api.common.articles.ArticleVote

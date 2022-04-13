@@ -1,12 +1,14 @@
+@file: Suppress("ClassOrdering")
+
 package com.makentoshe.habrachan.api.api.articles
 
 import com.makentoshe.habrachan.CustomStringBuilder
 import com.makentoshe.habrachan.api.api.articles.filter.ApiArticlesFilter
 import com.makentoshe.habrachan.api.api.articles.filter.ApiArticlesFilterScope
-import com.makentoshe.habrachan.api.common.ApiRequestBuilder
 import com.makentoshe.habrachan.api.api.articles.filter.ArticlesFlow
 import com.makentoshe.habrachan.api.api.articles.filter.ArticlesOrder
 import com.makentoshe.habrachan.api.api.articles.filter.ArticlesPeriod
+import com.makentoshe.habrachan.api.common.ApiRequestBuilder
 
 fun HabrahabrApiArticles.filter(filter: ApiArticlesFilterScope.() -> Unit): HabrahabrApiArticlesByFilter {
     return filter(ApiArticlesFilterScope().apply(filter).build())
@@ -52,8 +54,8 @@ data class HabrahabrApiArticlesByFilter(
 
             is ApiArticlesFilter.Sort.Flow -> path.append("/flows/${sort.flowString}")
 
-            is ApiArticlesFilter.Sort.Hub.All -> path.append("/hub/${sort.hub}/all")
-            is ApiArticlesFilter.Sort.Hub.Interesting -> path.append("/hub/${sort.hub}/interesting")
+            is ApiArticlesFilter.Sort.Hub.All -> path.append("/hub/${sort.title}/all")
+            is ApiArticlesFilter.Sort.Hub.Interesting -> path.append("/hub/${sort.title}/interesting")
 
             is ApiArticlesFilter.Sort.User -> path.append("/users/${sort.login.login}/posts")
             is ApiArticlesFilter.Sort.Query -> {

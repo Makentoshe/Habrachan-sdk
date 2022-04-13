@@ -52,10 +52,10 @@ data class ApiArticlesFilter(
         data class Flow(val flow: ArticlesFlow) : Sort()
 
         sealed class Hub : Sort() {
-            abstract val hub: String
+            abstract val title: String
 
-            data class All(override val hub: String) : Hub()
-            data class Interesting(override val hub: String) : Hub()
+            data class All(override val title: String) : Hub()
+            data class Interesting(override val title: String) : Hub()
 //            data class Top(val period: ArticlesPeriod): Sort()
         }
 
@@ -63,4 +63,3 @@ data class ApiArticlesFilter(
     }
 
 }
-
