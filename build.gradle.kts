@@ -116,8 +116,8 @@ kotlin {
             dependencies {
                 // Ktor client - http multiplatform client
                 // https://github.com/ktorio/ktor
-                implementation("io.ktor:ktor-client-core:1.6.4")
-                implementation("io.ktor:ktor-client-cio:1.6.4")
+                implementation("io.ktor:ktor-client-core:2.0.0")
+                implementation("io.ktor:ktor-client-cio:2.0.0")
             }
         }
         val jvmTest by getting
