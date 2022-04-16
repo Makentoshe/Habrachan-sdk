@@ -3,6 +3,7 @@
 plugins {
     kotlin("multiplatform") version "1.6.10"
     id("io.gitlab.arturbosch.detekt").version("1.19.0")
+    kotlin("plugin.serialization") version "1.6.10"
 }
 
 group = "com.makentoshe"
@@ -104,7 +105,7 @@ kotlin {
         else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
     }
 
-    
+
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
@@ -120,7 +121,24 @@ kotlin {
                 implementation("io.ktor:ktor-client-cio:2.0.0")
             }
         }
-        val jvmTest by getting
+        val jvmTest by getting {
+            dependencies {
+                // Ktor client - http multiplatform client
+                // https://github.com/ktorio/ktor
+                implementation("io.ktor:ktor-client-core:2.0.0")
+                implementation("io.ktor:ktor-client-cio:2.0.0")
+
+                // Junit 5
+                // https://github.com/junit-team/junit5
+                implementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+
+                // Kotlinx.serialization
+                // https://github.com/Kotlin/kotlinx.serialization
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+
+            }
+        }
         val jsMain by getting
         val jsTest by getting
         val nativeMain by getting

@@ -13,6 +13,9 @@ build/
 # Local configuration file (sdk path, etc)
 local.properties
 
+# Local sensitive files, required by tests
+src/jvmTest/resources/credentials.json
+
 # Log Files
 *.log
 
