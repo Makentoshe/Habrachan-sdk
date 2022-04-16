@@ -33,7 +33,7 @@ jobs:
       uses: gradle/gradle-build-action@v2
     # Execute default build to be sure project can be built
     - name: Execute Gradle build
-      run: ./gradlew build
+      run: ./gradlew build -x allTests -x jvmTest
 
   detekt:
     # The type of runner that the job will run on
