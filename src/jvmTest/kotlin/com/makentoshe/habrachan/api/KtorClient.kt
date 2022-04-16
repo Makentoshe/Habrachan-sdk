@@ -22,29 +22,3 @@ private fun defineMethod(method: ApiRequestMethod) = when (method) {
     is ApiRequestMethod.Put -> HttpMethod.Put
     is ApiRequestMethod.Post -> HttpMethod.Post
 }
-
-//fun main() = runBlocking {
-//    val request = Habrahabr.api().users().user(userlogin("Makentoshe")).hubsAndCompanies().build {
-//////        query("fl", "en,ru")
-////        header("csrf-token", "yQPemErn-hfu4eNj0Uv5fyU_PRZ7K-pWa-mQ")
-////        header("Cookie", "connect_sid=s%3AKeBNhWmReiAtbgjzVmZa-CJbolAx-sTC.SPbf2YDDKB%2FW78fRP%2B%2F5wP64%2F8YlciA4xp2orxf32IY")
-//        header("token", "ee828f6b64a066b352dc18e3034038c905c4d8ca")
-//        header("client", "85cab69095196f3.89453480")
-////////        header("apiKey", "173984950848a2d27c0cc1c76ccf3d6d3dc8255b")
-//    }
-////    println(request)
-//    execute(request)
-//}
-//
-//private suspend fun execute(request: ApiRequest) {
-//    val response = HttpClient(CIO).request(Url(request.url)) {
-//        method = defineMethod(request.method)
-//        request.queries.forEach { query -> parameter(query.key, query.value) }
-//        request.headers.forEach { header -> headers.append(header.key, header.value) }
-//    }
-//
-//    println(response.call.request.content)
-//    println(response.call.request.url)
-//    println(response.body<String>())
-//}
-//

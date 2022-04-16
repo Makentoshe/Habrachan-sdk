@@ -1,4 +1,5 @@
-package com.makentoshe.habrachan.api
+@file: Suppress("UnnecessaryAbstractClass")
+package com.makentoshe.habrachan.api.api
 
 import com.makentoshe.habrachan.api.common.ApiRequest
 import com.makentoshe.habrachan.api.common.ApiRequestBuilder
