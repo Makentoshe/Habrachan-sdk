@@ -1,7 +1,7 @@
 package com.makentoshe.habrachan.api.api.users
 
 import com.makentoshe.habrachan.api.Habrahabr
-import com.makentoshe.habrachan.api.api.HabrahabrApiTest
+import com.makentoshe.habrachan.api.HabrahabrApiTest
 import com.makentoshe.habrachan.api.api.api
 import com.makentoshe.habrachan.api.execute
 import com.makentoshe.habrachan.entity.userlogin
