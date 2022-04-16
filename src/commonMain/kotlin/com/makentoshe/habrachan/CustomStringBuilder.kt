@@ -1,24 +1,24 @@
 @file: Suppress("ClassOrdering")
+
 package com.makentoshe.habrachan
 
-class CustomStringBuilder(initial: String) {
+data class CustomStringBuilder constructor(private val list: ArrayList<String>) {
 
-    constructor() : this("")
+    constructor() : this(ArrayList())
+    constructor(initial: String) : this(ArrayList<String>().apply { if (initial.isNotEmpty()) add(initial) })
 
-    private val list = ArrayList<String>()
+    fun append(integer: Int) = append(integer.toString())
 
-    init {
-        if (initial.isNotEmpty()) list.add(initial)
-    }
+    fun append(string: String) = copy(list = list.copyAndAdd(string))
 
-    fun append(string: String) = this.apply { list.add(string) }
-
-    fun append(integer: Int) = this.apply { list.add(integer.toString()) }
-
-    fun dropLast() = this.apply { list.removeLastOrNull() }
+    fun dropLast() = copy(list = ArrayList(list).apply { removeLastOrNull() })
 
     override fun toString(): String {
         return list.joinToString(separator = "")
     }
 
+    private fun appendCopying(string: String) = copy(list = list.copyAndAdd(string))
 }
+
+/** Copying current list and adds [strings] elements at the tail */
+private fun ArrayList<String>.copyAndAdd(vararg strings: String) = ArrayList(this).apply { addAll(strings) }
