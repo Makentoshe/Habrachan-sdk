@@ -17,7 +17,7 @@ import kotlinx.serialization.json.Json
 @kotlinx.serialization.Serializable
 data class HabrahabrApiCredentials(val api: String, val client: String, val token: String)
 
-abstract class HabrahabrApiTest(jsonCredentialsFilepath: String = "credentials.json") {
+abstract class HabrahabrApiJvmTest(jsonCredentialsFilepath: String = "credentials.json") {
 
     private val credentials = Json.decodeFromString<HabrahabrApiCredentials>(
         this::class.java.classLoader.getResource(jsonCredentialsFilepath).readText()
