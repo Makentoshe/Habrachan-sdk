@@ -1,17 +1,13 @@
 package com.makentoshe.habrachan.api.kek.users
 
 import com.makentoshe.habrachan.api.Habrahabr
-import com.makentoshe.habrachan.api.api.api
 import com.makentoshe.habrachan.api.common.build
 import com.makentoshe.habrachan.api.execute
-import com.makentoshe.habrachan.api.kek.HabrahabrKekGateway
 import com.makentoshe.habrachan.api.kek.kek
 import com.makentoshe.habrachan.api.kek.users.filter.UserSubscriptionsFilter
 import com.makentoshe.habrachan.entity.userlogin
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
-import io.ktor.client.statement.request
 import io.ktor.http.HttpStatusCode
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -53,5 +49,4 @@ class HabrahabrKekUsersTest {
         val response = request.execute(httpClient)
         assertEquals(HttpStatusCode.OK, response.status)
     }
-
 }

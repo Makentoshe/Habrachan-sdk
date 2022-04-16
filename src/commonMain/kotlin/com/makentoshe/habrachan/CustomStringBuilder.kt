@@ -16,9 +16,7 @@ data class CustomStringBuilder constructor(private val list: ArrayList<String>) 
     override fun toString(): String {
         return list.joinToString(separator = "")
     }
-
-    private fun appendCopying(string: String) = copy(list = list.copyAndAdd(string))
 }
 
 /** Copying current list and adds [strings] elements at the tail */
-private fun ArrayList<String>.copyAndAdd(vararg strings: String) = ArrayList(this).apply { addAll(strings) }
+private inline fun ArrayList<String>.copyAndAdd(vararg strings: String) = ArrayList(this).apply { addAll(strings) }
