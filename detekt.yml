@@ -220,7 +220,7 @@ naming:
     enumEntryPattern: '^[A-Z][_a-zA-Z0-9]*'
   FunctionMaxLength:
     active: true
-    excludes: ['**/test/**', '**/androidTest/**', '**/jvmTest/**']
+    excludes: ['**/test/**', '**/androidTest/**', '**/jvmTest/**', '**/commonTest/**']
     maximumFunctionNameLength: 30
   FunctionMinLength:
     active: true
