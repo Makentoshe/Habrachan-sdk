@@ -1,4 +1,5 @@
 @file: Suppress("UnnecessaryAbstractClass")
+
 package com.makentoshe.habrachan.api.api
 
 import com.makentoshe.habrachan.api.common.ApiRequest
@@ -15,7 +16,13 @@ import kotlinx.serialization.json.Json
  * {"api":"api","client":"client","token":"token"}
  */
 @kotlinx.serialization.Serializable
-data class HabrahabrApiCredentials(val api: String, val client: String, val token: String)
+data class HabrahabrApiCredentials(
+    val api: String,
+    val client: String,
+    val token: String,
+    val email: String,
+    val password: String,
+)
 
 abstract class HabrahabrApiJvmTest(jsonCredentialsFilepath: String = "credentials.json") {
 
@@ -26,6 +33,8 @@ abstract class HabrahabrApiJvmTest(jsonCredentialsFilepath: String = "credential
     protected val client get() = credentials.client
     protected val api get() = credentials.api
     protected val token get() = credentials.token
+    protected val email get() = credentials.email
+    protected val password get() = credentials.password
 
     fun ApiRequestBuilder.logoutbuild(
         force: Boolean = true,
